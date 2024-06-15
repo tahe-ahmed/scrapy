@@ -26,7 +26,7 @@ if TYPE_CHECKING:
 
 class ScrapyArgumentParser(argparse.ArgumentParser):
     def _parse_optional(
-        self, arg_string: str
+            self, arg_string: str
     ) -> Optional[Tuple[Optional[argparse.Action], str, Optional[str]]]:
         # if starts with -: it means that is a parameter not a argument
         if arg_string[:2] == "-:":
@@ -41,10 +41,10 @@ def _iter_command_classes(module_name: str) -> Iterable[Type[ScrapyCommand]]:
     for module in walk_modules(module_name):
         for obj in vars(module).values():
             if (
-                inspect.isclass(obj)
-                and issubclass(obj, ScrapyCommand)
-                and obj.__module__ == module.__name__
-                and obj not in (ScrapyCommand, BaseRunSpiderCommand)
+                    inspect.isclass(obj)
+                    and issubclass(obj, ScrapyCommand)
+                    and obj.__module__ == module.__name__
+                    and obj not in (ScrapyCommand, BaseRunSpiderCommand)
             ):
                 yield obj
 
@@ -59,7 +59,7 @@ def _get_commands_from_module(module: str, inproject: bool) -> Dict[str, ScrapyC
 
 
 def _get_commands_from_entry_points(
-    inproject: bool, group: str = "scrapy.commands"
+        inproject: bool, group: str = "scrapy.commands"
 ) -> Dict[str, ScrapyCommand]:
     cmds: Dict[str, ScrapyCommand] = {}
     if sys.version_info >= (3, 10):
@@ -76,7 +76,7 @@ def _get_commands_from_entry_points(
 
 
 def _get_commands_dict(
-    settings: BaseSettings, inproject: bool
+        settings: BaseSettings, inproject: bool
 ) -> Dict[str, ScrapyCommand]:
     cmds = _get_commands_from_module("scrapy.commands", inproject)
     cmds.update(_get_commands_from_entry_points(inproject))
@@ -96,13 +96,25 @@ def _pop_command_name(argv: List[str]) -> Optional[str]:
     return None
 
 
+branch_coverage = {
+    "_print_header_1": False,
+    "_print_header_2": False,
+}
+
+
 def _print_header(settings: BaseSettings, inproject: bool) -> None:
     version = scrapy.__version__
     if inproject:
+        branch_coverage["_print_header_1"] = True
         print(f"Scrapy {version} - active project: {settings['BOT_NAME']}\n")
-
     else:
+        branch_coverage["_print_header_2"] = True
         print(f"Scrapy {version} - no active project\n")
+
+
+def _print_branch_coverage():
+    for branch, executed in branch_coverage.items():
+        print(f"{branch} has been {'executed' if executed else 'missed'}")
 
 
 def _print_commands(settings: BaseSettings, inproject: bool) -> None:
@@ -121,7 +133,7 @@ def _print_commands(settings: BaseSettings, inproject: bool) -> None:
 
 
 def _print_unknown_command(
-    settings: BaseSettings, cmdname: str, inproject: bool
+        settings: BaseSettings, cmdname: str, inproject: bool
 ) -> None:
     _print_header(settings, inproject)
     print(f"Unknown command: {cmdname}\n")
@@ -129,10 +141,10 @@ def _print_unknown_command(
 
 
 def _run_print_help(
-    parser: argparse.ArgumentParser,
-    func: Callable[_P, None],
-    *a: _P.args,
-    **kw: _P.kwargs,
+        parser: argparse.ArgumentParser,
+        func: Callable[_P, None],
+        *a: _P.args,
+        **kw: _P.kwargs,
 ) -> None:
     try:
         func(*a, **kw)
@@ -145,7 +157,7 @@ def _run_print_help(
 
 
 def execute(
-    argv: Optional[List[str]] = None, settings: Optional[Settings] = None
+        argv: Optional[List[str]] = None, settings: Optional[Settings] = None
 ) -> None:
     if argv is None:
         argv = sys.argv
@@ -196,7 +208,7 @@ def _run_command(cmd: ScrapyCommand, args: List[str], opts: argparse.Namespace) 
 
 
 def _run_command_profiled(
-    cmd: ScrapyCommand, args: List[str], opts: argparse.Namespace
+        cmd: ScrapyCommand, args: List[str], opts: argparse.Namespace
 ) -> None:
     if opts.profile:
         sys.stderr.write(f"scrapy: writing cProfile stats to {opts.profile!r}\n")
