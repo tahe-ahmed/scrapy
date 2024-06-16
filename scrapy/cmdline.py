@@ -113,8 +113,10 @@ def _print_header(settings: BaseSettings, inproject: bool) -> None:
 
 
 def _print_branch_coverage():
+    coveragePercentage = (sum(branch_coverage.values()) / len(branch_coverage)) * 100
     for branch, executed in branch_coverage.items():
         print(f"{branch} has been {'executed' if executed else 'missed'}")
+    print(f"Branch coverage: {coveragePercentage}%")
 
 
 def _print_commands(settings: BaseSettings, inproject: bool) -> None:
