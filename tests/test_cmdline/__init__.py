@@ -39,14 +39,14 @@ class CmdlineTest(unittest.TestCase):
             "override",
         )
 
-    # @patch("builtins.print")
-    # def test_print_header_inProject(self, mock_print):
-    #     settings = Settings()
-    #     settings.set("SCRAPY_TEST", "TEST1")
-    #     _print_header(settings, True)
-    #     mock_print.assert_called_with(
-    #         f"Scrapy {scrapy.__version__} - active project: {settings['BOT_NAME']}\n"
-    #     )
+    @patch("builtins.print")
+    def test_print_header_inProject(self, mock_print):
+        settings = Settings()
+        settings.set("SCRAPY_TEST", "TEST1")
+        _print_header(settings, True)
+        mock_print.assert_called_with(
+            f"Scrapy {scrapy.__version__} - active project: {settings['BOT_NAME']}\n"
+        )
 
     @patch("builtins.print")
     def test_print_header_noProject(self, mock_print):
@@ -56,12 +56,7 @@ class CmdlineTest(unittest.TestCase):
         mock_print.assert_called_with(
             f"Scrapy {scrapy.__version__} - no active project\n"
         )
-        settings = Settings()
-        settings.set("SCRAPY_TEST", "TEST1")
-        _print_header(settings, True)
-        mock_print.assert_called_with(
-            f"Scrapy {scrapy.__version__} - active project: {settings['BOT_NAME']}\n"
-        )
+
 
     def test_profiling(self):
         path = Path(tempfile.mkdtemp())
