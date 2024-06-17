@@ -149,8 +149,26 @@ class CSVFeedSpider(Spider):
 
     def _parse(self, response: Response, **kwargs: Any) -> Any:
         if not hasattr(self, "parse_row"):
+            branch_coverage["branch1"] = True
             raise NotConfigured(
                 "You must define parse_row method in order to scrape this CSV feed"
             )
+        else:
+            branch_coverage["branch2"] = True
         response = self.adapt_response(response)
         return self.parse_rows(response)
+
+    def get_branch_coverage(self):
+        number_branches_covered = 0
+        for branch, hit in branch_coverage.items():
+            print(f"{branch} was {'hit' if hit else 'not hit'}")
+            if hit:
+                number_branches_covered +=1
+
+        result = number_branches_covered / len(branch_coverage) * 100
+        return result
+
+branch_coverage = {
+    "branch1" : False,
+    "branch2" : False
+}
