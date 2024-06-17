@@ -57,7 +57,6 @@ class CmdlineTest(unittest.TestCase):
             f"Scrapy {scrapy.__version__} - no active project\n"
         )
 
-
     def test_profiling(self):
         path = Path(tempfile.mkdtemp())
         filename = path / "res.prof"
