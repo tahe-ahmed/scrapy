@@ -1,19 +1,24 @@
 import argparse
 
-from scrapy.settings import Settings, BaseSettings
-from settings import Command, _print_branch_coverage
+from scrapy.settings import BaseSettings, Settings
+
+from .settings import Command, _print_branch_coverage
+
+
 def coverage_run_function():
     command = Command()
     command.settings = Settings(command.default_settings)
-    command.crawler_process = type('',(),{})()
-    command.crawler_process.settings = Settings({
-        "testBaseSetting": BaseSettings({"test_nested_key": "test_nested_value"}),
-        "testNotBaseSetting": "test_Value",
-        "testBoolSetting": True,
-        "testIntSetting": 5,
-        "testFloatSetting": 5.5,
-        "testListSetting": ["one","two","three"]
-    })
+    command.crawler_process = type("", (), {})()
+    command.crawler_process.settings = Settings(
+        {
+            "testBaseSetting": BaseSettings({"test_nested_key": "test_nested_value"}),
+            "testNotBaseSetting": "test_Value",
+            "testBoolSetting": True,
+            "testIntSetting": 5,
+            "testFloatSetting": 5.5,
+            "testListSetting": ["one", "two", "three"],
+        }
+    )
 
     parser = argparse.ArgumentParser()
     command.add_options(parser)
@@ -25,7 +30,7 @@ def coverage_run_function():
         ("--getint", "testIntSetting"),
         ("--getfloat", "testFloatSetting"),
         ("--getlist", "testListSetting"),
-        ()
+        (),
     ]
 
     for test_case in test_cases:
@@ -35,10 +40,10 @@ def coverage_run_function():
             print("Testing coverage on default settings")
 
         opts = parser.parse_args(list(test_case))
-        command.run([],opts)
+        command.run([], opts)
 
         _print_branch_coverage()
 
+
 if __name__ == "__main__":
     coverage_run_function()
-
