@@ -26,6 +26,11 @@ def _print_branch_coverage():
     print(f"Branch coverage: {coveragePercentage}%")
 
 
+def reset_branch_coverage():
+    global branch_coverage_run
+    branch_coverage_run = {key: False for key in branch_coverage_run}
+
+
 class Command(ScrapyCommand):
     requires_project = False
     default_settings = {"LOG_ENABLED": False, "SPIDER_LOADER_WARN_ONLY": True}

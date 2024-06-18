@@ -2,7 +2,7 @@ import argparse
 
 from scrapy.settings import BaseSettings, Settings
 
-from .settings import Command, _print_branch_coverage
+from .settings import Command, _print_branch_coverage, reset_branch_coverage
 
 
 def coverage_run_function():
@@ -43,6 +43,7 @@ def coverage_run_function():
         command.run([], opts)
 
         _print_branch_coverage()
+        reset_branch_coverage()
 
 
 if __name__ == "__main__":
