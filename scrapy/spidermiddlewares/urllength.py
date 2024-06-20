@@ -29,7 +29,10 @@ class UrlLengthMiddleware:
     def from_settings(cls, settings: BaseSettings) -> Self:
         maxlength = settings.getint("URLLENGTH_LIMIT")
         if not maxlength:
+            branch_coverage_from_settings["branch1"] = True
             raise NotConfigured
+        else:
+            branch_coverage_from_settings["branch2"] = True
         return cls(maxlength)
 
     def process_spider_output(
@@ -57,3 +60,11 @@ class UrlLengthMiddleware:
             )
             return False
         return True
+
+    def get_branch_coverage_from_settings(self):
+        return branch_coverage_from_settings
+
+branch_coverage_from_settings = {
+    "branch1" : False,
+    "branch2" : False
+}
