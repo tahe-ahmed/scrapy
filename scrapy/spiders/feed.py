@@ -168,6 +168,9 @@ class CSVFeedSpider(Spider):
         result = number_branches_covered / len(branch_coverage) * 100
         return result
 
+    def get_parse_branch_coverage(self):
+            return branch_coverage
+
 branch_coverage = {
     "branch1" : False,
     "branch2" : False
