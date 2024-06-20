@@ -11,7 +11,7 @@ from subprocess import PIPE, Popen
 from unittest.mock import patch
 
 import scrapy
-from scrapy.cmdline import _print_header
+from scrapy.cmdline import _print_branch_coverage_cmd, _print_header
 from scrapy.settings import Settings
 from scrapy.utils.test import get_testenv
 
@@ -39,23 +39,20 @@ class CmdlineTest(unittest.TestCase):
             "override",
         )
 
-    @patch("builtins.print")
-    def test_print_header_inProject(self, mock_print):
+    def test_print_header(self):
         settings = Settings()
         settings.set("SCRAPY_TEST", "TEST1")
-        _print_header(settings, True)
-        mock_print.assert_called_with(
-            f"Scrapy {scrapy.__version__} - active project: {settings['BOT_NAME']}\n"
-        )
-
-    @patch("builtins.print")
-    def test_print_header_noProject(self, mock_print):
-        settings = Settings()
-        settings.set("SCRAPY_TEST", "TEST1")
-        _print_header(settings, False)
-        mock_print.assert_called_with(
-            f"Scrapy {scrapy.__version__} - no active project\n"
-        )
+        with patch("builtins.print") as mock_print:
+            _print_header(settings, True)
+            mock_print.assert_called_with(
+                f"Scrapy {scrapy.__version__} - active project: {settings['BOT_NAME']}\n"
+            )
+        with patch("builtins.print") as mock_print:
+            _print_header(settings, False)
+            mock_print.assert_called_with(
+                f"Scrapy {scrapy.__version__} - no active project\n"
+            )
+        _print_branch_coverage_cmd()
 
     def test_profiling(self):
         path = Path(tempfile.mkdtemp())

@@ -112,7 +112,7 @@ def _print_header(settings: BaseSettings, inproject: bool) -> None:
         print(f"Scrapy {version} - no active project\n")
 
 
-def _print_branch_coverage():
+def _print_branch_coverage_cmd():
     coveragePercentage = (sum(branch_coverage.values()) / len(branch_coverage)) * 100
     for branch, executed in branch_coverage.items():
         print(f"{branch} has been {'executed' if executed else 'missed'}")
