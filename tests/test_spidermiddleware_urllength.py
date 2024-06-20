@@ -42,3 +42,8 @@ class TestUrlLengthMiddleware(TestCase):
         self.assertEqual(ric, 1)
 
         self.assertIn(f"Ignoring link (url length > {self.maxlength})", str(log))
+
+    def test_not_configured(self):
+        settings = Settings({"URLLENGTH_LIMIT": 0})
+        with self.assertRaises(NotConfigured):
+            UrlLengthMiddleware.from_settings(settings)
