@@ -1,8 +1,11 @@
 import argparse
 
+from scrapy.commands.settings import (
+    Command,
+    print_branch_coverage_settings_run,
+    reset_branch_coverage,
+)
 from scrapy.settings import BaseSettings, Settings
-
-from .settings import Command, _print_branch_coverage, reset_branch_coverage
 
 
 def coverage_run_function():
@@ -34,15 +37,10 @@ def coverage_run_function():
     ]
 
     for test_case in test_cases:
-        if test_case:
-            print(f"Testing coverage with  {test_case}")
-        else:
-            print("Testing coverage on default settings")
-
+        print(f"Testing coverage with  {test_case}")
         opts = parser.parse_args(list(test_case))
         command.run([], opts)
-
-        _print_branch_coverage()
+        print_branch_coverage_settings_run()
         reset_branch_coverage()
 
 

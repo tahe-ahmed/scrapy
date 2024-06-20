@@ -13,17 +13,17 @@ branch_coverage_run = {
     "run_3": False,
     "run_4": False,
     "run_5": False,
-    "run_default": False,
+    "run_6_default": False,
 }
 
 
-def _print_branch_coverage():
-    coveragePercentage = (
+def print_branch_coverage_settings_run():
+    coverage_percentage = (
         sum(branch_coverage_run.values()) / len(branch_coverage_run)
     ) * 100
     for branch, executed in branch_coverage_run.items():
         print(f"{branch} has been {'executed' if executed else 'missed'}")
-    print(f"Branch coverage: {coveragePercentage}%")
+    print(f"Branch coverage: {coverage_percentage}%")
 
 
 def reset_branch_coverage():
@@ -96,4 +96,4 @@ class Command(ScrapyCommand):
             branch_coverage_run["run_5"] = True
             print(settings.getlist(opts.getlist))
         else:
-            branch_coverage_run["run_default"] = True
+            branch_coverage_run["run_6_default"] = True

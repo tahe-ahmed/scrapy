@@ -96,7 +96,7 @@ def _pop_command_name(argv: List[str]) -> Optional[str]:
     return None
 
 
-branch_coverage = {
+branch_coverage_print_header = {
     "_print_header_1": False,
     "_print_header_2": False,
 }
@@ -105,18 +105,20 @@ branch_coverage = {
 def _print_header(settings: BaseSettings, inproject: bool) -> None:
     version = scrapy.__version__
     if inproject:
-        branch_coverage["_print_header_1"] = True
+        branch_coverage_print_header["_print_header_1"] = True
         print(f"Scrapy {version} - active project: {settings['BOT_NAME']}\n")
     else:
-        branch_coverage["_print_header_2"] = True
+        branch_coverage_print_header["_print_header_2"] = True
         print(f"Scrapy {version} - no active project\n")
 
 
 def _print_branch_coverage_cmd():
-    coveragePercentage = (sum(branch_coverage.values()) / len(branch_coverage)) * 100
-    for branch, executed in branch_coverage.items():
+    coverage_percentage = (
+        sum(branch_coverage_print_header.values()) / len(branch_coverage_print_header)
+    ) * 100
+    for branch, executed in branch_coverage_print_header.items():
         print(f"{branch} has been {'executed' if executed else 'missed'}")
-    print(f"Branch coverage: {coveragePercentage}%")
+    print(f"Branch coverage: {coverage_percentage}%")
 
 
 def _print_commands(settings: BaseSettings, inproject: bool) -> None:
