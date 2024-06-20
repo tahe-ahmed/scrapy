@@ -1,3 +1,4 @@
+import warnings
 from unittest import TestCase
 
 from testfixtures import LogCapture
@@ -7,6 +8,7 @@ from scrapy.settings import Settings
 from scrapy.spidermiddlewares.urllength import UrlLengthMiddleware
 from scrapy.spiders import Spider
 from scrapy.utils.test import get_crawler
+from scrapy.exceptions import NotConfigured
 
 
 class TestUrlLengthMiddleware(TestCase):
@@ -23,6 +25,10 @@ class TestUrlLengthMiddleware(TestCase):
         self.short_url_req = Request("http://scrapytest.org/")
         self.long_url_req = Request("http://scrapytest.org/this_is_a_long_url")
         self.reqs = [self.short_url_req, self.long_url_req]
+
+        branches = UrlLengthMiddleware.get_from_settings_branch_coverage()                #Added to test branch coverage before my test cases
+        branch_coverage = UrlLengthMiddleware.get_branch_coverage()                       #get percentage
+        warnings.warn(f"\nBranches: {branches}\nBranch Coverage : {branch_coverage}%")    #To print using warning
 
     def process_spider_output(self):
         return list(
@@ -43,7 +49,20 @@ class TestUrlLengthMiddleware(TestCase):
 
         self.assertIn(f"Ignoring link (url length > {self.maxlength})", str(log))
 
-    def test_not_configured(self):
+    def test_from_settings_not_configured(self):
         settings = Settings({"URLLENGTH_LIMIT": 0})
         with self.assertRaises(NotConfigured):
             UrlLengthMiddleware.from_settings(settings)
+
+        branches = UrlLengthMiddleware.get_from_settings_branch_coverage()
+        branch_coverage = UrlLengthMiddleware.get_branch_coverage()
+        warnings.warn(f"\nBranches: {branches}\nBranch Coverage : {branch_coverage}%")
+
+    def test_from_settings_configured(self):
+        settings = Settings({"URLLENGTH_LIMIT": 30})
+        self.assertEqual(30,UrlLengthMiddleware.from_settings(settings).maxlength)
+
+        branches = UrlLengthMiddleware.get_from_settings_branch_coverage()
+        branch_coverage = UrlLengthMiddleware.get_branch_coverage()
+        warnings.warn(f"\nBranches: {branches}\nBranch Coverage : {branch_coverage}%")
+
