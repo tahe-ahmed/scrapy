@@ -234,10 +234,6 @@ class CSVFeedSpiderTest(SpiderTest):
             spider._parse(response, **{})
         self.assertEqual(str(context.exception), "You must define parse_row method in order to scrape this CSV feed")
 
-        coverage = spider.get_branch_coverage()
-        branches = spider.get_parse_branch_coverage()
-        warnings.warn(f"\nBranches: {branches}\nBranch coverage: {coverage}%\n")
-
     def test_parse_with_parse_row(self):
         body = get_testdata("feeds", "feed-sample6.csv")
         response = Response("http://example.org/dummy.csv", body=body)
@@ -260,10 +256,6 @@ class CSVFeedSpiderTest(SpiderTest):
         rows = list(result)
         self.assertEqual(len(rows), 4)
         self.assertEqual(rows[0], {"id": "1", "name": "alpha", "value": "foobar"})
-
-        coverage = spider.get_branch_coverage()
-        branches = spider.get_parse_branch_coverage()
-        warnings.warn(f"\nBranches: {branches}\nBranch coverage: {coverage}%\n")
 
 
 class CrawlSpiderTest(SpiderTest):

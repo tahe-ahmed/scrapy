@@ -7,6 +7,8 @@ See documentation in docs/topics/spiders.rst
 
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 
+import os
+from pathlib import Path
 from scrapy.exceptions import NotConfigured, NotSupported
 from scrapy.http import Response, TextResponse
 from scrapy.selector import Selector
@@ -149,29 +151,29 @@ class CSVFeedSpider(Spider):
 
     def _parse(self, response: Response, **kwargs: Any) -> Any:
         if not hasattr(self, "parse_row"):
-            branch_coverage["branch1"] = True
+            parse_branch_coverage["branch1"] = True
+            write__parse_branch_coverage_to_file()
             raise NotConfigured(
                 "You must define parse_row method in order to scrape this CSV feed"
             )
         else:
-            branch_coverage["branch2"] = True
+            parse_branch_coverage["branch2"] = True
+            write__parse_branch_coverage_to_file()
         response = self.adapt_response(response)
         return self.parse_rows(response)
 
-    def get_branch_coverage(self):
-        number_branches_covered = 0
-        for branch, hit in branch_coverage.items():
-            print(f"{branch} was {'hit' if hit else 'not hit'}")
-            if hit:
-                number_branches_covered +=1
+def write__parse_branch_coverage_to_file():
+    project_dir = Path(__file__).resolve().parent.parent.parent
+    output_file = os.path.join(project_dir, "branch_coverage__parse.txt")
+    coverage_percentage = (
+                                  sum(parse_branch_coverage.values()) / len(parse_branch_coverage)
+                          ) * 100
+    with open(output_file, "w", encoding="utf-8") as f:
+        for branch, executed in parse_branch_coverage.items():
+            f.write(f"{branch} has been {'executed' if executed else 'missed'}\n")
+        f.write(f"Branch coverage: {coverage_percentage:.2f}%\n")
 
-        result = number_branches_covered / len(branch_coverage) * 100
-        return result
-
-    def get_parse_branch_coverage(self):
-            return branch_coverage
-
-branch_coverage = {
+parse_branch_coverage = {
     "branch1" : False,
     "branch2" : False
 }
