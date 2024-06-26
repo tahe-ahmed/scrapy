@@ -1,4 +1,3 @@
-import warnings
 from unittest import TestCase
 
 from testfixtures import LogCapture
@@ -26,10 +25,6 @@ class TestUrlLengthMiddleware(TestCase):
         self.long_url_req = Request("http://scrapytest.org/this_is_a_long_url")
         self.reqs = [self.short_url_req, self.long_url_req]
 
-        branches = UrlLengthMiddleware.get_from_settings_branch_coverage()                #Added to test branch coverage before my test cases
-        branch_coverage = UrlLengthMiddleware.get_branch_coverage()                       #get percentage
-        warnings.warn(f"\nBranches: {branches}\nBranch Coverage : {branch_coverage}%")    #To print using warning
-
     def process_spider_output(self):
         return list(
             self.mw.process_spider_output(self.response, self.reqs, self.spider)
@@ -54,15 +49,6 @@ class TestUrlLengthMiddleware(TestCase):
         with self.assertRaises(NotConfigured):
             UrlLengthMiddleware.from_settings(settings)
 
-        branches = UrlLengthMiddleware.get_from_settings_branch_coverage()
-        branch_coverage = UrlLengthMiddleware.get_branch_coverage()
-        warnings.warn(f"\nBranches: {branches}\nBranch Coverage : {branch_coverage}%")
-
     def test_from_settings_configured(self):
         settings = Settings({"URLLENGTH_LIMIT": 30})
         self.assertEqual(30,UrlLengthMiddleware.from_settings(settings).maxlength)
-
-        branches = UrlLengthMiddleware.get_from_settings_branch_coverage()
-        branch_coverage = UrlLengthMiddleware.get_branch_coverage()
-        warnings.warn(f"\nBranches: {branches}\nBranch Coverage : {branch_coverage}%")
-

@@ -7,6 +7,8 @@ See documentation in docs/topics/spider-middleware.rst
 from __future__ import annotations
 
 import logging
+import os
+from pathlib import Path
 from typing import TYPE_CHECKING, Any, AsyncIterable, Iterable
 
 from scrapy import Spider
@@ -30,9 +32,11 @@ class UrlLengthMiddleware:
         maxlength = settings.getint("URLLENGTH_LIMIT")
         if not maxlength:
             from_settings_branch_coverage["branch1"] = True
+            write_from_settings_branch_coverage_to_file()
             raise NotConfigured
         else:
             from_settings_branch_coverage["branch2"] = True
+            write_from_settings_branch_coverage_to_file()
         return cls(maxlength)
 
     def process_spider_output(
@@ -61,20 +65,16 @@ class UrlLengthMiddleware:
             return False
         return True
 
-    @staticmethod
-    def get_from_settings_branch_coverage():
-        return from_settings_branch_coverage
-
-    @staticmethod
-    def get_branch_coverage():
-        number_branches_covered = 0
-        for branch, hit in from_settings_branch_coverage.items():
-            print(f"{branch} was {'hit' if hit else 'not hit'}")
-            if hit:
-                number_branches_covered +=1
-
-        result = number_branches_covered / len(from_settings_branch_coverage) * 100
-        return result
+def write_from_settings_branch_coverage_to_file():
+    project_dir = Path(__file__).resolve().parent.parent.parent
+    output_file = os.path.join(project_dir, "branch_coverage_from_settings.txt")
+    coverage_percentage = (
+                                  sum(from_settings_branch_coverage.values()) / len(from_settings_branch_coverage)
+                          ) * 100
+    with open(output_file, "w", encoding="utf-8") as f:
+        for branch, executed in from_settings_branch_coverage.items():
+            f.write(f"{branch} has been {'executed' if executed else 'missed'}\n")
+        f.write(f"Branch coverage: {coverage_percentage:.2f}%\n")
 
 from_settings_branch_coverage = {
     "branch1" : False,
