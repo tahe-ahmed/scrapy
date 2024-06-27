@@ -120,6 +120,16 @@ Screenshot for the coverage with existing test case:
 
 ![AD_4nXf-NuExREQ6MwWOlzjIQQFf8Zqa_rmL0lzBOfpYgmELdQfYQldjh12QBJysfOWZu7ak1qiXq8NS71AHx4XBEa2Z4vwqUpC2POpy2BXEMeSuDXdFmGBsHJ2X](https://github.com/tahe-ahmed/scrapy/assets/122382588/fa7cd0e1-6c6a-47d5-b10a-44e295802165)
 
+Before adding the test cases:
+
+![image](https://github.com/tahe-ahmed/scrapy/assets/66109992/5a41feee-75b7-4c5b-bcfa-9f5ba520caa7)
+
+Function 6: max_level()
+Location: scrapy/commands/parse.py
+
+Before adding the test cases:
+
+![image](https://github.com/tahe-ahmed/scrapy/assets/66109992/b20d1c40-0d68-4bda-b50a-75bf1145aae9)
 
 <Group member name>
 
