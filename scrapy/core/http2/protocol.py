@@ -38,6 +38,7 @@ from scrapy.core.http2.stream import Stream, StreamCloseReason
 from scrapy.http import Request
 from scrapy.settings import Settings
 from scrapy.spiders import Spider
+from scrapy.custom_coverage import *
 
 logger = logging.getLogger(__name__)
 
@@ -419,9 +420,13 @@ class H2ClientProtocol(Protocol, TimeoutMixin):
 
     def window_updated(self, event: WindowUpdated) -> None:
         if event.stream_id != 0:
+            coverage.track_branch("window_updated", "if")
+            coverage.save_coverage_to_file()
             self.streams[event.stream_id].receive_window_update()
         else:
             # Send leftover data for all the streams
+            coverage.track_branch("window_updated", "else")
+            coverage.save_coverage_to_file()
             for stream in self.streams.values():
                 stream.receive_window_update()
 
