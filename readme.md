@@ -210,6 +210,78 @@ with existing tool:
 ![Screenshot 2024-06-27 at 22 30 55](https://github.com/tahe-ahmed/scrapy/assets/122382588/97bbba24-2293-4038-95ba-001eff1fcc1c)
 
 coverage went from 25% to 100% so a 75% increase in coverage
+
+
+
+Wen Jie Kenneth Chen
+
+Test 3: Consist 2 test functions
+
+Location: tests/test_spider.py
+
+Namely: 
+
+1. test_parse_without_parse_row
+  
+2. test_parse_with_parse_row
+
+Link to commit:
+
+https://github.com/tahe-ahmed/scrapy/commit/c32a1b0042c02d382c3ab9f62633a0a7de1a6fab
+
+Screenshots of the tests:
+
+![AD_4nXd3NOZ95j_qjbG4_lc5lslME5MzT28sp3vihkecX2z-eAo_gf4rksW-c8suHOa9ycc5B-Pc_v2LCQyPfhdt2DiLRCkV3k0iCOgL03xTI2VYK7-Bup_c9K39](https://github.com/tahe-ahmed/scrapy/assets/122382588/392d614b-940b-4579-8a0d-d3c44149e36b)
+
+![AD_4nXcOb-Bszkwekr-XwfaCB71MnRLpOHZN214huEGdDuMcw688-D-Vppsu2yKTP99QNcfOSf6A_P50tseJXzj07yGc9IFSj8xExnMz7FQalutmGyjhOvpMZ21r](https://github.com/tahe-ahmed/scrapy/assets/122382588/81b1e696-c4e6-4f1e-ba96-452df7329b66)
+
+No old coverage screenshot for this function.
+
+Because the function is not covered and not tested.
+
+So the branch coverage for that function is 0%
+
+New coverage screenshot for this function:
+
+![= branch_coverage_parse txt](https://github.com/tahe-ahmed/scrapy/assets/122382588/055674c2-a33e-46a8-ad1b-0ad59603241c)
+
+
+Test 4: consist 3 test functions. (Actually 1 is enough but the other is not tested because it is setup. So i made 1 additional test that actually test it.
+
+Location: tests/test_spidermiddlewares_urllength.py
+
+Namely: 
+
+1. setUp
+3. test_from_settings_not_configured
+4. test_from_settings_configured
+
+Link to commit: 
+https://github.com/tahe-ahmed/scrapy/commit/9b5a6ec8e7421eba800179b0b471add39042ed67
+
+Screenshot of existing function that covered 50% branch of “from_settings”:
+
+(Note: it is a setup function but it covers 50% branches and it is not tested. I added  test cases for both.)
+
+![AD_4nXfpVEd89o8aTpGbL5yG_zk1HeypKPlgoZCsDLXtwd6--GFgDdI4YxxFCPWWWo_VGi_qNsnjLbBNK4MHT0spl8ULHJlRRsZRHSjAdOzGti084CXNtdV7_VJJ](https://github.com/tahe-ahmed/scrapy/assets/122382588/28cc9eab-fa7c-4da6-be6d-e2b48602c03e)
+
+New test functions:
+
+![AD_4nXciQJLBpebRIDdQKqhRx69sim_k99iPfxcQLXn6gjLC6ubu5RVahIhNoW-KqFb3_Y2jOSdFdroPMxm_EPAhQNza2ciaX1RRjmjt6YpWnuWrSWn01BWbzjW8](https://github.com/tahe-ahmed/scrapy/assets/122382588/91b3df16-dc88-4bb3-881a-0575f44dd409)
+
+old screenshot coverage:
+
+![brancht has been missed](https://github.com/tahe-ahmed/scrapy/assets/122382588/555c6f9c-08d3-4854-b4a1-73578d282675)
+
+New screenshot coverage:
+
+![= branch_coverage_from_settings txt](https://github.com/tahe-ahmed/scrapy/assets/122382588/74a96768-98c9-473d-a454-9891a16adfad)
+
+
+The setup function already covered 50% because it called from_settings but it was not really tested with assert, so i made an additional test case for it.
+Now with the third test function the coverage will be 100%.
+
+
 <Group member name>
 
 <Test 1>
