@@ -108,9 +108,59 @@ with existing tool:
 
 Screenshot of new coverage results:
 
+with own tool:
+
 ![AD_4nXdqk-VIuCXNlGo2RG_nG20hto9TkyJ22RZd0L7AHt5Gqnd8SPmw2-QowLTOuKLeX1J_-1a2pJ7e6i_O8hNp2hW1kVMrujJKup80_A8v-zYVnH0skMcFzBl3](https://github.com/tahe-ahmed/scrapy/assets/122382588/392cc504-ab8b-44fd-b49d-5672d2996f17)
 
+with existing tool:
 
+![Screenshot 2024-06-27 at 22 26 49](https://github.com/tahe-ahmed/scrapy/assets/122382588/044ba0eb-87aa-4b03-8881-b02010d8167e)
+
+coverage went from 0% to 100% so an increase of 100 percent 
+
+Test 2 consist of multiple tests named: 
+
+test_get_base_setting
+
+test_get_not_base_setting
+ 
+test_get_bool_setting
+
+test_get_int_setting
+
+test_get_float_setting
+
+test_get_list_setting
+
+Test_default_setting
+
+There are multiple tests since the function has 7 branches, and putting them all in 1 test function seems like bad practice.
+
+Link to commit of the tests:
+
+https://github.com/scrapy/scrapy/commit/24683ef8e28e625d911fc5e50bde232a8c0bde24
+
+Screenshot of old coverage results:
+
+with own tool:
+
+![run_1 has been executed](https://github.com/tahe-ahmed/scrapy/assets/122382588/44aa7026-49d5-43c0-96e3-36d9b3a8789f)
+
+with existing tool:
+
+![Screenshot 2024-06-27 at 22 31 49](https://github.com/tahe-ahmed/scrapy/assets/122382588/91479eb8-aee1-49aa-87a6-ecb96eae8d8e)
+
+Screenshot of new coverage results:
+
+with own tool:
+
+![= branch_coverage_run txt](https://github.com/tahe-ahmed/scrapy/assets/122382588/ebb0b782-f768-4629-a1e7-ca00a5a288a2)
+
+with existing tool:
+
+![Screenshot 2024-06-27 at 22 30 55](https://github.com/tahe-ahmed/scrapy/assets/122382588/97bbba24-2293-4038-95ba-001eff1fcc1c)
+
+coverage went from 25% to 100% so a 75% increase in coverage
 <Group member name>
 
 <Test 1>
@@ -131,8 +181,33 @@ Screenshot of new coverage results:
 
 <Provide a screenshot of the old coverage results by running an existing tool (the same as you already showed above)>
 
+screenshots of old coverage result:
+
+Screenshot of total coverage results in the coverage.xml file, to include screenshots of the whole  xml file would make it too large, but along the coverage report we used this to see branch coverage per function
+
+![Screenshot 2024-06-27 at 22 06 48](https://github.com/tahe-ahmed/scrapy/assets/122382588/ed56d501-f394-448d-bad9-8deeac21649d
+
+screenshots of coverage report:
+
+![Screenshot 2024-06-27 at 22 09 15](https://github.com/tahe-ahmed/scrapy/assets/122382588/26aad9d2-70c6-4346-ae6d-f6a1a9ac8206)
+![Screenshot 2024-06-27 at 22 09 28](https://github.com/tahe-ahmed/scrapy/assets/122382588/e0eb70b1-7593-43b6-a750-a5acf8f80e2c)
+![Screenshot 2024-06-27 at 22 09 50](https://github.com/tahe-ahmed/scrapy/assets/122382588/5a72f671-a2d7-4f59-ab13-2c26b178b426)
+![Screenshot 2024-06-27 at 22 10 04](https://github.com/tahe-ahmed/scrapy/assets/122382588/2d9a2f30-3c1e-418c-a2c6-0746c34eec3a)
+
+screenshot of new coverage result: 
+
+![Screenshot 2024-06-27 at 22 37 37](https://github.com/tahe-ahmed/scrapy/assets/122382588/c5f784c0-1573-48d4-b19a-32aa46096c8f)
+
+screenshots of new coverage report:
+
+![Screenshot 2024-06-27 at 22 38 20](https://github.com/tahe-ahmed/scrapy/assets/122382588/3791f524-f705-4330-a4f5-fd2aea187d62)
+![Screenshot 2024-06-27 at 22 38 30](https://github.com/tahe-ahmed/scrapy/assets/122382588/65d016fc-1849-4965-b3af-f8b1a0cd1a63)
+![Screenshot 2024-06-27 at 22 38 40](https://github.com/tahe-ahmed/scrapy/assets/122382588/aaa9cc3f-dea0-45b8-a866-d21898938e52)
+![Screenshot 2024-06-27 at 22 38 47](https://github.com/tahe-ahmed/scrapy/assets/122382588/cddb1ce1-d4d7-4144-8622-e30eb325787f)
+
+
 <Provide a screenshot of the new coverage results by running the existing tool using all test modifications made by the group>
 
 ## Statement of individual contributions
+![Screenshot 2024-06-27 at 22 39 43](https://github.com/tahe-ahmed/scrapy/assets/122382588/bed45529-81f8-457d-89e4-26b023de221d)
 
-<Write what each group member did>
