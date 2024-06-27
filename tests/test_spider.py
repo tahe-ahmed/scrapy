@@ -25,6 +25,7 @@ from scrapy.spiders import (
     Spider,
     XMLFeedSpider,
 )
+from scrapy.exceptions import NotConfigured
 from scrapy.spiders.init import InitSpider
 from scrapy.utils.test import get_crawler
 from tests import get_testdata, tests_datadir
@@ -216,6 +217,45 @@ class CSVFeedSpiderTest(SpiderTest):
         rows = list(spider.parse_rows(response))
         assert rows[0] == {"id": "1", "name": "alpha", "value": "foobar"}
         assert len(rows) == 4
+
+    def test_parse_without_parse_row(self):
+        body = get_testdata("feeds", "feed-sample6.csv")
+        response = Response("http://example.org/dummy.csv", body=body)
+        del CSVFeedSpider.parse_row
+
+        class _CrawlSpider(CSVFeedSpider):
+            name = "test"
+            delimiter = ","
+            quotechar = "'"
+
+        spider = _CrawlSpider()
+
+        with self.assertRaises(NotConfigured) as context:
+            spider._parse(response, **{})
+        self.assertEqual(str(context.exception), "You must define parse_row method in order to scrape this CSV feed")
+
+    def test_parse_with_parse_row(self):
+        body = get_testdata("feeds", "feed-sample6.csv")
+        response = Response("http://example.org/dummy.csv", body=body)
+
+        class _CrawlSpider(self.spider_class):
+            name = "test"
+            delimiter = ","
+            quotechar = "'"
+
+            def parse_row(self, response, row):
+                return row
+
+        spider = _CrawlSpider()
+
+        try:
+            result = spider._parse(response, **{})
+        except NotConfigured:
+            self.fail("Unexpected NotConfigured exception raised")
+
+        rows = list(result)
+        self.assertEqual(len(rows), 4)
+        self.assertEqual(rows[0], {"id": "1", "name": "alpha", "value": "foobar"})
 
 
 class CrawlSpiderTest(SpiderTest):
