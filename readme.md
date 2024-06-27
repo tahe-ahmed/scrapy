@@ -331,6 +331,53 @@ The setup function already covered 50% because it called from_settings but it wa
 Now with the third test function the coverage will be 100%.
 
 ---
+Function 5: print_requests()
+Test 5 Commit link:
+https://github.com/tahe-ahmed/scrapy/commit/6bf57c71a459b9ae59f417bb1049d6ffe0a1c6e8 
+
+Before running adding the test cases:
+
+![image](https://github.com/tahe-ahmed/scrapy/assets/66109992/c5f19a68-b6da-4cf8-9495-8cbc9c5c1a6f)
+
+After running adding the test cases:
+
+![image](https://github.com/tahe-ahmed/scrapy/assets/66109992/de26788c-b0b9-4a9b-9ede-9b39f7de2982)
+
+The screenshot above shows that 5 statements have been covered and a 3% increase statement coverage for parse.py
+
+![image](https://github.com/tahe-ahmed/scrapy/assets/66109992/97e277c8-cfcf-4596-b705-ae038680e954)
+
+The coverage was initially 0%, meaning none of the branches were covered. After adding test cases that account for all the possible paths from the decision points, the branch coverage increased to 100%. For this test the test cases used were:
+test_max_Lvl_no_items_no_requests()
+test_max_Lvl_with_items_no_request()
+test_max_Lvl_no_items_with_request()
+test_max_Lvl_with_items_with_request()
+
+Function 6: max_level()
+Test 6 Commit link: 
+https://github.com/scrapy/scrapy/commit/19cf241ad0e8d1e477ec786baec2894405fda0b7  
+
+Before adding the test cases:
+
+![image](https://github.com/tahe-ahmed/scrapy/assets/66109992/f0a379f5-7402-4d9d-b8f5-b5da8bdae498)
+
+After adding the test cases:
+
+![image](https://github.com/tahe-ahmed/scrapy/assets/66109992/cee8fdcf-33ae-4957-a85b-a2cc2cdd081b)
+
+The screenshot above shows that 6 statement have been covered and a 3% increase statement coverage for parse.py
+
+![image](https://github.com/tahe-ahmed/scrapy/assets/66109992/53c7894c-0a5c-448e-ba3d-988a79949fbe)
+
+For this function, the process is similar to the aforementioned function, however, 2 else cases were created to account for the “invisible” branch and update the dictionary when the branch gets covered. The following were the test cases used:
+test_print_requests_no_level_no_request
+test_print_requests_no_level_with_request
+test_print_requests_with_level_with_request
+test_print_requests_with_level_no_request
+
+![image](https://github.com/tahe-ahmed/scrapy/assets/66109992/3f32e418-29f6-4cf6-bc19-ca12a74c58dd)
+
+---
 
      
 **Tahe Ahmed Ghaleb Alhamady**
