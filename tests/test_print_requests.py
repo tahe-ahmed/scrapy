@@ -28,7 +28,7 @@ class TestPrintRequests(unittest.TestCase):
         self.assertEqual(parse.print_requests_coverage["run_2"], "hit")
 
     def test_print_requests_with_level_no_request(self):
-        self.command.requests = {1: "http://examplerequest.com"}
+        self.command.requests = {}
         self.command.print_requests(2, colour=False) 
         self.assertEqual(parse.print_requests_coverage["run_2"], "hit")
 
