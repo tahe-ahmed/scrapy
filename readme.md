@@ -2,11 +2,12 @@
 
 ## Project chosen
 
-Name: <TODO>
+Name: Scrapy
 
-URL: <TODO>
+URL: https://github.com/scrapy/scrapy
 
-Number of lines of code and the tool used to count it: <TODO>
+Number of lines of code and the tool used to count it: Lizard 
+
 
 Programming language: <TODO>
 
@@ -14,7 +15,15 @@ Programming language: <TODO>
 
 ### Existing tool
 
-<Inform the name of the existing tool that was executed and how it was executed>
+coverage,py 
+It is executed by running the following commands: 
+tox
+coverage run -m tox
+coverage report
+Coverage xml 
+Screenshot of total coverage results in the coverage.xml file, to include screenshots of the whole  xml file would make it too large, but along the coverage report we used this to see branch coverage per function
+![Screenshot 2024-06-27 at 22 06 48](https://github.com/tahe-ahmed/scrapy/assets/122382588/ed56d501-f394-448d-bad9-8deeac21649d)
+
 
 <Show the coverage results provided by the existing tool with a screenshot>
 
