@@ -35,10 +35,10 @@ from twisted.web.client import URI
 from zope.interface import implementer
 
 from scrapy.core.http2.stream import Stream, StreamCloseReason
+from scrapy.custom_coverage import *
 from scrapy.http import Request
 from scrapy.settings import Settings
 from scrapy.spiders import Spider
-from scrapy.custom_coverage import *
 
 logger = logging.getLogger(__name__)
 

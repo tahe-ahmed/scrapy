@@ -14,6 +14,7 @@ from w3lib.url import safe_url_string
 
 from scrapy import signals
 from scrapy.crawler import Crawler
+from scrapy.exceptions import NotConfigured
 from scrapy.http import HtmlResponse, Request, Response, TextResponse, XmlResponse
 from scrapy.linkextractors import LinkExtractor
 from scrapy.settings import Settings
@@ -25,7 +26,6 @@ from scrapy.spiders import (
     Spider,
     XMLFeedSpider,
 )
-from scrapy.exceptions import NotConfigured
 from scrapy.spiders.init import InitSpider
 from scrapy.utils.test import get_crawler
 from tests import get_testdata, tests_datadir
@@ -232,7 +232,10 @@ class CSVFeedSpiderTest(SpiderTest):
 
         with self.assertRaises(NotConfigured) as context:
             spider._parse(response, **{})
-        self.assertEqual(str(context.exception), "You must define parse_row method in order to scrape this CSV feed")
+        self.assertEqual(
+            str(context.exception),
+            "You must define parse_row method in order to scrape this CSV feed",
+        )
 
     def test_parse_with_parse_row(self):
         body = get_testdata("feeds", "feed-sample6.csv")

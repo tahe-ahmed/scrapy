@@ -1,13 +1,15 @@
-import sys
 import json
 import os
+import sys
 from pathlib import Path
+
 
 class Coverage:
     def __init__(self):
         self.coverage_data = {
-            "initiate_request": {"if": False,"else": False},
-            "window_updated": {"if": False, "else": False}}
+            "initiate_request": {"if": False, "else": False},
+            "window_updated": {"if": False, "else": False},
+        }
 
     def track_branch(self, function_name, branch):
         if function_name not in self.coverage_data:
@@ -19,7 +21,7 @@ class Coverage:
         output_file = os.path.join(project_dir, "coverage_data.json")
 
         if os.path.exists(output_file):
-            with open(output_file, 'r') as f:
+            with open(output_file) as f:
                 existing_data = json.load(f)
                 for function_name, branches in self.coverage_data.items():
                     if function_name in existing_data:
@@ -31,14 +33,12 @@ class Coverage:
         else:
             existing_data = self.coverage_data
 
-        with open(output_file, 'w') as f:
+        with open(output_file, "w") as f:
             json.dump(existing_data, f)
-
-
 
     def load_coverage(self, filepath):
         if os.path.exists(filepath):
-            with open(filepath, 'r') as f:
+            with open(filepath) as f:
                 return json.load(f)
         return {}
 
@@ -46,14 +46,18 @@ class Coverage:
         branches = self.coverage_data.get(function_name, {})
         total_branches = len(branches)
         covered_branches = sum(1 for hit in branches.values() if hit)
-        coverage_percentage = (covered_branches / total_branches) * 100 if total_branches > 0 else 100
+        coverage_percentage = (
+            (covered_branches / total_branches) * 100 if total_branches > 0 else 100
+        )
         return total_branches, covered_branches, coverage_percentage
 
     def report(self):
         report_lines = []
 
         for function, branches in self.coverage_data.items():
-            total_branches, covered_branches, coverage_percentage = self.calculate_coverage(function)
+            total_branches, covered_branches, coverage_percentage = (
+                self.calculate_coverage(function)
+            )
             report_lines.append(f"{function}:")
             for branch, hit in branches.items():
                 status = "hit" if hit else "not hit"
@@ -64,7 +68,9 @@ class Coverage:
 
         return "\n".join(report_lines)
 
+
 coverage = Coverage()
+
 
 def print_coverage_report():
     project_dir = Path(__file__).resolve().parent.parent.parent
@@ -73,6 +79,7 @@ def print_coverage_report():
     if coverage_data:
         coverage.coverage_data = coverage_data
     print(coverage.report())
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:

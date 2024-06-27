@@ -11,11 +11,12 @@ from twisted.internet.error import ConnectionClosed
 from twisted.python.failure import Failure
 from twisted.web.client import ResponseFailed
 
+from scrapy.custom_coverage import *
 from scrapy.http import Request
 from scrapy.http.headers import Headers
 from scrapy.responsetypes import responsetypes
 from scrapy.utils.httpobj import urlparse_cached
-from scrapy.custom_coverage import *
+
 if TYPE_CHECKING:
     from scrapy.core.http2.protocol import H2ClientProtocol
 

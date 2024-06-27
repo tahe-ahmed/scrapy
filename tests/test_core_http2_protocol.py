@@ -1,7 +1,13 @@
 import unittest
 from unittest.mock import Mock, patch
-from scrapy.core.http2.protocol import H2ClientProtocol, Stream  # Replace 'some_module' with the actual module name
+
 from h2.events import WindowUpdated
+
+from scrapy.core.http2.protocol import (  # Replace 'some_module' with the actual module name
+    H2ClientProtocol,
+    Stream,
+)
+
 
 class TestH2ClientProtocol(unittest.TestCase):
     def setUp(self):
@@ -9,7 +15,9 @@ class TestH2ClientProtocol(unittest.TestCase):
         self.settings = Mock()
         self.settings.getint = Mock(return_value=1024)
         self.conn_lost_deferred = Mock()
-        self.protocol = H2ClientProtocol(self.uri, self.settings, self.conn_lost_deferred)
+        self.protocol = H2ClientProtocol(
+            self.uri, self.settings, self.conn_lost_deferred
+        )
 
         self.stream1 = Mock(spec=Stream)
         self.stream2 = Mock(spec=Stream)
@@ -35,5 +43,6 @@ class TestH2ClientProtocol(unittest.TestCase):
         self.stream1.receive_window_update.assert_called_once()
         self.stream2.receive_window_update.assert_called_once()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

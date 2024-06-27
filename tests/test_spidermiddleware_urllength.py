@@ -2,12 +2,12 @@ from unittest import TestCase
 
 from testfixtures import LogCapture
 
+from scrapy.exceptions import NotConfigured
 from scrapy.http import Request, Response
 from scrapy.settings import Settings
 from scrapy.spidermiddlewares.urllength import UrlLengthMiddleware
 from scrapy.spiders import Spider
 from scrapy.utils.test import get_crawler
-from scrapy.exceptions import NotConfigured
 
 
 class TestUrlLengthMiddleware(TestCase):
@@ -51,4 +51,4 @@ class TestUrlLengthMiddleware(TestCase):
 
     def test_from_settings_configured(self):
         settings = Settings({"URLLENGTH_LIMIT": 30})
-        self.assertEqual(30,UrlLengthMiddleware.from_settings(settings).maxlength)
+        self.assertEqual(30, UrlLengthMiddleware.from_settings(settings).maxlength)
