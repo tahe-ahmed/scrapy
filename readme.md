@@ -120,6 +120,13 @@ Screenshot for the coverage with existing test case:
 
 ![AD_4nXf-NuExREQ6MwWOlzjIQQFf8Zqa_rmL0lzBOfpYgmELdQfYQldjh12QBJysfOWZu7ak1qiXq8NS71AHx4XBEa2Z4vwqUpC2POpy2BXEMeSuDXdFmGBsHJ2X](https://github.com/tahe-ahmed/scrapy/assets/122382588/fa7cd0e1-6c6a-47d5-b10a-44e295802165)
 
+Peter Mayrany
+Function 5: print_requests():
+Location: scrapy/commands/parse.py
+Git commit line:
+https://github.com/tahe-ahmed/scrapy/commit/3e66201b9477ef923a611cf906f7c8015f0ee307 
+The above commit includes the instrumentation for both functions, since they are in the same file.
+
 Before adding the test cases:
 
 ![image](https://github.com/tahe-ahmed/scrapy/assets/66109992/5a41feee-75b7-4c5b-bcfa-9f5ba520caa7)
