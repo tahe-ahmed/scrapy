@@ -30,6 +30,7 @@ Coverage xml
 overage results provided by the existing tool:
 
 Screenshot of total coverage results in the coverage.xml file, to include screenshots of the whole  xml file would make it too large, but along the coverage report we used this to see branch coverage per function
+
 ![Screenshot 2024-06-27 at 22 06 48](https://github.com/tahe-ahmed/scrapy/assets/122382588/ed56d501-f394-448d-bad9-8deeac21649d
 
 screenshots of coverage report:
