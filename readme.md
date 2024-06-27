@@ -131,6 +131,43 @@ Before adding the test cases:
 
 ![image](https://github.com/tahe-ahmed/scrapy/assets/66109992/b20d1c40-0d68-4bda-b50a-75bf1145aae9)
 
+
+
+---
+
+    
+    
+**Tahe Ahmed Ghaleb Alhamady**
+### Function 7: `def initiate_request`
+
+**Location:** `Stream.py`
+
+**Link to commit:**  
+[https://github.com/tahe-ahmed/scrapy/commit/020db210479b7692b32671f35a7a3a0c46416936](https://github.com/tahe-ahmed/scrapy/commit/020db210479b7692b32671f35a7a3a0c46416936)
+
+**Screenshot of results outputted by the instrumentation for Function 1:**
+
+![Screenshot from 2024-06-24 20-33-28](https://github.com/tahe-ahmed/scrapy/assets/61438389/513d5267-f57e-4729-aae4-3668db16b68a)
+
+### Function 8: `def window_updated`
+
+**Location:** `protocol.py`
+
+**Link to commit:**  
+[https://github.com/tahe-ahmed/scrapy/commit/020db210479b7692b32671f35a7a3a0c46416936](https://github.com/tahe-ahmed/scrapy/commit/020db210479b7692b32671f35a7a3a0c46416936)
+
+**Screenshot of results outputted by the instrumentation for Function 2:**
+
+![Screenshot from 2024-06-24 20-33-28](https://github.com/tahe-ahmed/scrapy/assets/61438389/088d1fd8-cb1d-4887-b2fe-d666a0be1c74)
+
+    
+
+---
+
+
+---
+
+
 <Group member name>
 
 <Function 1 name>
@@ -292,6 +329,43 @@ New screenshot coverage:
 
 The setup function already covered 50% because it called from_settings but it was not really tested with assert, so i made an additional test case for it.
 Now with the third test function the coverage will be 100%.
+
+---
+
+     
+**Tahe Ahmed Ghaleb Alhamady**
+    
+**Test 7 name: test_window_updated_specific_stream():		
+Test 8 name: test_window_updated_all_streams():**
+
+Location : tests/test_core_http2_protocol.py
+Location: tests/test_core_http2_stream.py
+
+Link to commit of tests: 
+
+https://github.com/tahe-ahmed/scrapy/commit/020db210479b7692b32671f35a7a3a0c46416936
+
+* Old coverage results: 
+
+    * with my own coverage tool:
+     ![Screenshot from 2024-06-24 20-33-28](https://github.com/tahe-ahmed/scrapy/assets/61438389/b3901838-91ac-44ed-961a-a6d6adc4aec6)
+
+    * with the [coverage.py](https://coverage.readthedocs.io/en/7.5.4/) tool: 
+![Screenshot from 2024-06-27 23-19-58](https://github.com/tahe-ahmed/scrapy/assets/61438389/ba74ed0d-d5ae-4400-896f-5b68df8d0b75)
+![Screenshot from 2024-06-27 23-19-10](https://github.com/tahe-ahmed/scrapy/assets/61438389/d25e4ae4-e6c3-45dc-aea2-b221a71d55d3)
+
+* New coverage results:
+ 
+ 
+    * with my own coverage tool:
+  ![Screenshot from 2024-06-24 20-43-27](https://github.com/tahe-ahmed/scrapy/assets/61438389/d17def5a-a171-4d8d-a7de-0d46c407d61d)
+
+    * with the [coverage.py](https://coverage.readthedocs.io/en/7.5.4/)  tool:
+![Screenshot from 2024-06-27 23-23-28](https://github.com/tahe-ahmed/scrapy/assets/61438389/de17da27-f31c-4500-8074-b51e62f3585a)
+![Screenshot from 2024-06-27 23-23-05](https://github.com/tahe-ahmed/scrapy/assets/61438389/ea3f01ef-9237-465b-9aca-ab90f24f4132)
+
+---
+---
 
 
 <Group member name>
