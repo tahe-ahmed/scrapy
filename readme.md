@@ -7,7 +7,9 @@ Name: Scrapy
 URL: https://github.com/scrapy/scrapy
 
 Number of lines of code and the tool used to count it: Lizard 
+
 Command: lizard --exclude '*./.tox/*' -l python
+
 ![image](https://github.com/tahe-ahmed/scrapy/assets/66109992/21acc066-2d97-4376-b320-9efa4475b5f8)
 
 
