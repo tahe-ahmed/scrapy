@@ -162,7 +162,7 @@ class Command(BaseRunSpiderCommand):
         num_branches = len(max_level_coverage)
         coverage_percentage = num_hits / num_branches * 100
 
-        project_dir = Path(__file__).resolve().parent.parent.parent
+        project_dir = Path(__file__).resolve().parent
         output_file = os.path.join(project_dir, "coverage_max_level.txt")
 
         with open(output_file, "w", encoding="utf-8") as f:
