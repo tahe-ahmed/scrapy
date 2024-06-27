@@ -19,7 +19,7 @@ Programming language: <TODO>
 
 ### Existing tool
 
-coverage,py 
+coverage.py 
 
 It is executed by running the following commands: 
 
@@ -78,7 +78,7 @@ Screenshot of results outputted by the instrumentation for function2:
 
 Wen Jie Kenneth Chen
 
-Function 1: _parse 
+Function 3: _parse 
 
 Location scrapy/spiders/feed.py:150
 
@@ -101,7 +101,7 @@ No branch coverage results. Because this function is not tested and covered in t
 
 Wen Jie Kenneth Chen
 
-Function 2: from_settings
+Function 4: from_settings
 
 Location: scrapy/spidermiddlewares/urllength.py:29
 
@@ -426,21 +426,6 @@ https://github.com/tahe-ahmed/scrapy/commit/020db210479b7692b32671f35a7a3a0c4641
 ---
 
 
-<Group member name>
-
-<Test 1>
-
-<Show a patch (diff) or a link to a commit made in your forked repository that shows the new/enhanced test>
-
-<Provide a screenshot of the old coverage results (the same as you already showed above)>
-
-<Provide a screenshot of the new coverage results>
-
-<State the coverage improvement with a number and elaborate on why the coverage is improved>
-
-<Test 2>
-
-<Provide the same kind of information provided for Test 1>
 
 ### Overall
 
