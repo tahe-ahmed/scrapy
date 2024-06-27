@@ -65,17 +65,18 @@ class UrlLengthMiddleware:
             return False
         return True
 
-
 def write_from_settings_branch_coverage_to_file():
     project_dir = Path(__file__).resolve().parent.parent.parent
     output_file = os.path.join(project_dir, "branch_coverage_from_settings.txt")
     coverage_percentage = (
-        sum(from_settings_branch_coverage.values()) / len(from_settings_branch_coverage)
-    ) * 100
+                                  sum(from_settings_branch_coverage.values()) / len(from_settings_branch_coverage)
+                          ) * 100
     with open(output_file, "w", encoding="utf-8") as f:
         for branch, executed in from_settings_branch_coverage.items():
             f.write(f"{branch} has been {'executed' if executed else 'missed'}\n")
         f.write(f"Branch coverage: {coverage_percentage:.2f}%\n")
 
-
-from_settings_branch_coverage = {"branch1": False, "branch2": False}
+from_settings_branch_coverage = {
+    "branch1" : False,
+    "branch2" : False
+}

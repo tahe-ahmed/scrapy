@@ -5,10 +5,10 @@ for scraping from an XML feed.
 See documentation in docs/topics/spiders.rst
 """
 
-import os
-from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 
+import os
+from pathlib import Path
 from scrapy.exceptions import NotConfigured, NotSupported
 from scrapy.http import Response, TextResponse
 from scrapy.selector import Selector
@@ -162,17 +162,18 @@ class CSVFeedSpider(Spider):
         response = self.adapt_response(response)
         return self.parse_rows(response)
 
-
 def write__parse_branch_coverage_to_file():
     project_dir = Path(__file__).resolve().parent.parent.parent
     output_file = os.path.join(project_dir, "branch_coverage__parse.txt")
     coverage_percentage = (
-        sum(parse_branch_coverage.values()) / len(parse_branch_coverage)
-    ) * 100
+                                  sum(parse_branch_coverage.values()) / len(parse_branch_coverage)
+                          ) * 100
     with open(output_file, "w", encoding="utf-8") as f:
         for branch, executed in parse_branch_coverage.items():
             f.write(f"{branch} has been {'executed' if executed else 'missed'}\n")
         f.write(f"Branch coverage: {coverage_percentage:.2f}%\n")
 
-
-parse_branch_coverage = {"branch1": False, "branch2": False}
+parse_branch_coverage = {
+    "branch1" : False,
+    "branch2" : False
+}
