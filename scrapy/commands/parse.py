@@ -5,6 +5,8 @@ import functools
 import inspect
 import json
 import logging
+import os
+from pathlib import Path
 from typing import (
     Any,
     AsyncGenerator,
@@ -39,6 +41,21 @@ from scrapy.utils.spider import spidercls_for_request
 logger = logging.getLogger(__name__)
 
 _T = TypeVar("_T")
+
+
+print_requests_coverage = {
+    "run_1": "miss",
+    "run_1.1": "miss",
+    "run_1.2": "miss",
+    "run_2": "miss",
+}
+
+max_level_coverage = {
+    "run_1": "miss",
+    "run_2": "miss",
+    "run_3": "miss",
+    "run_4": "miss",
+}
 
 
 class Command(BaseRunSpiderCommand):
@@ -129,10 +146,32 @@ class Command(BaseRunSpiderCommand):
     def max_level(self) -> int:
         max_items, max_requests = 0, 0
         if self.items:
+            max_level_coverage["run_1"] = "hit"
             max_items = max(self.items)
+        else:
+            max_level_coverage["run_2"] = "hit"
         if self.requests:
+            max_level_coverage["run_3"] = "hit"
             max_requests = max(self.requests)
+        else:
+            max_level_coverage["run_4"] = "hit"
         return max(max_items, max_requests)
+
+    def write_max_level_coverage_to_file(self) -> None:
+        num_hits = list(max_level_coverage.values()).count("hit")
+        num_branches = len(max_level_coverage)
+        coverage_percentage = num_hits / num_branches * 100
+
+        project_dir = Path(__file__).resolve().parent
+        output_file = os.path.join(project_dir, "coverage_max_level.txt")
+
+        with open(output_file, "w", encoding="utf-8") as f:
+            f.write(
+                "The following are the branches that have been covered by the test cases for max_level():\n"
+            )
+            for run, hit_or_miss in max_level_coverage.items():
+                f.write(f" - {run} was {hit_or_miss}\n")
+            f.write(f"The branch coverage is: {coverage_percentage:.2f}%\n")
 
     def handle_exception(self, _failure: Failure) -> None:
         logger.error(
@@ -180,15 +219,35 @@ class Command(BaseRunSpiderCommand):
 
     def print_requests(self, lvl: Optional[int] = None, colour: bool = True) -> None:
         if lvl is None:
+            print_requests_coverage["run_1"] = "hit"
             if self.requests:
+                print_requests_coverage["run_1.1"] = "hit"
                 requests = self.requests[max(self.requests)]
             else:
+                print_requests_coverage["run_1.2"] = "hit"
                 requests = []
         else:
+            print_requests_coverage["run_2"] = "hit"
             requests = self.requests.get(lvl, [])
 
         print("# Requests ", "-" * 65)
         display.pprint(requests, colorize=colour)
+
+    def write_print_request_coverage_to_file(self) -> None:
+        num_hits = list(print_requests_coverage.values()).count("hit")
+        num_branches = len(print_requests_coverage)
+        coverage_percentage = num_hits / num_branches * 100
+
+        project_dir = Path(__file__).resolve().parent
+        output_file = os.path.join(project_dir, "coverage_print_requests.txt")
+
+        with open(output_file, "w", encoding="utf-8") as f:
+            f.write(
+                "The following are the branches that have been covered by the test cases of print_request():\n"
+            )
+            for run, hit_or_miss in print_requests_coverage.items():
+                f.write(f" - {run} was {hit_or_miss}\n")
+            f.write(f"The branch coverage is: {coverage_percentage:.2f}%\n")
 
     def print_results(self, opts: argparse.Namespace) -> None:
         colour = not opts.nocolour
