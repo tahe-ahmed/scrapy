@@ -70,6 +70,55 @@ Screenshot of results outputted by the instrumentation for function2:
 
 ![Screenshot 2024-06-27 at 22 16 44](https://github.com/tahe-ahmed/scrapy/assets/122382588/0c5dc5ca-be70-4fbe-9368-e2222b582a07)
 
+Wen Jie Kenneth Chen
+
+Function 1: _parse 
+
+Location scrapy/spiders/feed.py:150
+
+Link to commit : 
+
+https://github.com/tahe-ahmed/scrapy/commit/6fec39e2401ef644e3cd5f5be85969bce04d0e4c
+
+Before instrumenting my own coverage tool code (see below):
+
+![AD_4nXeswX9-ishZUODSt_MzUmY0dlbMzgQI4Jmk0uABnbjgJT7uCEGKBYxkpkvXSnrhrfKiVPewoyOFskngEEQrNsABkiy7CEVdv7jjIrDOjDQd8i5prKvru5_7](https://github.com/tahe-ahmed/scrapy/assets/122382588/4ad1f00c-6065-4b3c-ad61-9e5e196662e9)
+
+After instrumenting my own coverage tool code (see below):
+
+![AD_4nXce3JO4_rBOwZLaXxuZ3n2NXBpAratlDlPd_SX2ThMIGTElYvpc7oycBEEs9dTjPk7swuWa0vjSAmlxRYhaZObCmsZBFAqNE5uMi8HL055nI5YR3-y56ajP](https://github.com/tahe-ahmed/scrapy/assets/122382588/c5ae2948-cf7e-44e5-b4d8-1b4d3508e1e2)
+
+
+The coverage tool is implemented in the same file as the function “_parse”
+
+No branch coverage results. Because this function is not tested and covered in the existing tool. So basically it is 0%.
+
+Wen Jie Kenneth Chen
+
+Function 2: from_settings
+
+Location: scrapy/spidermiddlewares/urllength.py:29
+
+Link to commit : 
+
+https://github.com/tahe-ahmed/scrapy/commit/7d9dd8c7874da4738ab1feb7ccd2f1615669eeea
+
+Before instrumenting my own coverage tool code (see below):
+
+![AD_4nXeJ5H91K5mxpQvaP8udirr3k_vw3svpv31FFRqbCwMQ80fRDxkCmrxpCO_YCUnqSDIwCwdQriVVknRmSTZkraWrXw5jHaEXdg9niMHiyhtQ4mCFcvWMESyi](https://github.com/tahe-ahmed/scrapy/assets/122382588/2cdb9572-2558-4cd8-8620-de2eb56ed041)
+
+
+After instrumenting my own coverage tool code (see below):
+
+![write_from_settings_branch_coverage_to_file()](https://github.com/tahe-ahmed/scrapy/assets/122382588/5e3d6c3d-4675-4f94-9bb7-f7f47813bd4b)
+
+![AD_4nXeuA--tc80xifCCAWaWjoDhy66gsnz9k6UJ_pVNdedCiU6m6IU1kaasY6lq8AsWklHXEwLes_BpB-dvoB0rv9993VZFmAq35q9YWLTuC0ohe3Ro6gk4E2AK](https://github.com/tahe-ahmed/scrapy/assets/122382588/bff379b2-65a8-477b-bf7c-ad00e1ec7f9d)
+
+Screenshot for the coverage with existing test case:
+
+![AD_4nXf-NuExREQ6MwWOlzjIQQFf8Zqa_rmL0lzBOfpYgmELdQfYQldjh12QBJysfOWZu7ak1qiXq8NS71AHx4XBEa2Z4vwqUpC2POpy2BXEMeSuDXdFmGBsHJ2X](https://github.com/tahe-ahmed/scrapy/assets/122382588/fa7cd0e1-6c6a-47d5-b10a-44e295802165)
+
+
 <Group member name>
 
 <Function 1 name>
